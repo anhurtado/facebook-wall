@@ -5,14 +5,12 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authFire: AngularFireAuth,
-    private authService: AuthService
+    private authFire: AngularFireAuth
   ) {}
 
   canActivate(
