@@ -26,8 +26,7 @@ export class WallComponent implements OnInit {
   }
 
   newPost() {
-    console.log(this.titlePost, this.targetPost);
-    this.wallService.addPost("Lorem ipsum","public");
+    this.wallService.addPost(this.titlePost, this.targetPost);
     this.titlePost = "";
   }
 

@@ -5,12 +5,12 @@
 
         <form>
           <section class="form-group">
-            <textarea class="form-control" rows="3" placeholder="¿Qué esta pasando?"></textarea>
+            <textarea class="form-control" rows="3" placeholder="¿Qué esta pasando?" [(ngModel)]="titlePost" [ngModelOptions]="{standalone: true}"></textarea>
           </section>
           <section class="row mt-3 mb-3">
             <section class="col-md-4">
               <section class="form-group">
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="targetPost" [ngModelOptions]="{standalone: true}">
                   <option value="friends">Amigos</option>
                   <option value="public">Público</option>
                 </select>
