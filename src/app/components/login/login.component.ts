@@ -12,9 +12,9 @@ export class LoginComponent {
   public password: string;
 
   constructor(
-    public authService: AuthService,
-    public router: Router
-  ) { }
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   loginUser() {
     this.authService.login(this.email, this.password)

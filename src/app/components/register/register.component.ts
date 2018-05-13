@@ -12,9 +12,9 @@ export class RegisterComponent {
   public password: string;
 
   constructor(
-    public authService: AuthService,
-    public router: Router
-  ) { }
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   registerUser() {
     this.authService.register(this.email, this.password)
