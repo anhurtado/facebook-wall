@@ -4,16 +4,24 @@
       <section class="card-body">
         <h1>Iniciar Sesión</h1>
         <hr>
-        <form (submit)="loginUser()">
+        <form [formGroup]="loginForm" (submit)="loginUser()">
           <section class="form-group">
             <label for="email">Correo electrónico</label>
-            <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control">
+            <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control" formControlName="email" required>
           </section>
+          <section *ngIf="formErrors.email" class="text-danger">
+            {{ formErrors.email }}
+          </section>
+
           <section class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" name="password" id="password" [(ngModel)]="password" class="form-control">
+            <input type="password" name="password" id="password" [(ngModel)]="password" class="form-control" formControlName="password" required>
           </section>
-          <button class="btn btn-info btn-block btn-lg">
+          <section *ngIf="formErrors.password" class="text-danger">
+            {{ formErrors.password }}
+          </section>
+
+          <button class="btn btn-info btn-block btn-lg" [disabled]="!loginForm.valid">
             <i class="fa fa-key"></i> Entrar
           </button>
         </form>
