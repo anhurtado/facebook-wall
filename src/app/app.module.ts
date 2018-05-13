@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
@@ -16,6 +17,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
+import { WallService } from './services/wall.service';
 import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
@@ -34,13 +36,15 @@ import { AuthGuard } from './guards/auth.guard';
     FormsModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     FlashMessagesModule
   ],
   providers: [
-    AuthService,
     AuthGuard,
-    FlashMessagesService
+    FlashMessagesService,
+    AuthService,
+    WallService
   ],
   bootstrap: [AppComponent]
 })

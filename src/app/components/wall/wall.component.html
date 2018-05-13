@@ -8,21 +8,23 @@
             <textarea class="form-control" rows="3" placeholder="¿Qué esta pasando?"></textarea>
           </section>
           <section class="row mt-3 mb-3">
-            <section class="col-md-6">
+            <section class="col-md-4">
               <section class="form-group">
-                <select class="form-control" id="publish">
-                  <option>Amigos</option>
-                  <option>Público</option>
+                <select class="form-control">
+                  <option value="friends">Amigos</option>
+                  <option value="public">Público</option>
                 </select>
               </section>
             </section>
-            <section class="col-md-6">
-              <button type="button" class="btn btn-outline-info">
+            <section class="col-md-4">
+              <button type="button" class="btn btn-outline-info" (click)="newPost()">
                 <i class="fa fa-bullhorn"></i> Publicar
               </button>
               <button type="button" class="btn btn-outline-info">
                 <i class="fa fa-image"></i> Subir Imagen
               </button>
+            </section>
+            <section class="col-md-4">
               <button type="button" class="btn btn-outline-info">
                 <i class="fa fa-user"></i> Amigos
               </button>
@@ -34,35 +36,15 @@
         </form>
 
         <section class="container">
-          <section class="card mb-3">
+          <section class="card mb-3" *ngFor="let item of postsListArray">
             <section class="card-body">
-              <h4 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, non saepe? Et minima in ut ipsa quia pariatur laboriosam inventore. Maiores id, libero assumenda repellendus unde praesentium pariatur ab voluptas.</h4>
-              <a href="#" class="card-link">
+              <h4 class="card-title">{{ item.title }}</h4>
+              <label class="text-muted">{{ item.target }}</label>
+              &nbsp;&nbsp; | &nbsp;&nbsp;
+              <a class="card-link" (click)="editPost(item.$key)">
                 <i class="fa fa-pencil"></i> Editar
               </a>
-              <a href="#" class="card-link">
-                <i class="fa fa-trash"></i> Eliminar
-              </a>
-            </section>
-          </section>
-          <section class="card mb-3">
-            <section class="card-body">
-              <h4 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, non saepe? Et minima in ut ipsa quia pariatur laboriosam inventore. Maiores id, libero assumenda repellendus unde praesentium pariatur ab voluptas.</h4>
-              <a href="#" class="card-link">
-                <i class="fa fa-pencil"></i> Editar
-              </a>
-              <a href="#" class="card-link">
-                <i class="fa fa-trash"></i> Eliminar
-              </a>
-            </section>
-          </section>
-          <section class="card mb-3">
-            <section class="card-body">
-              <h4 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, non saepe? Et minima in ut ipsa quia pariatur laboriosam inventore. Maiores id, libero assumenda repellendus unde praesentium pariatur ab voluptas.</h4>
-              <a href="#" class="card-link">
-                <i class="fa fa-pencil"></i> Editar
-              </a>
-              <a href="#" class="card-link">
+              <a class="card-link" (click)="removePost(item.$key)">
                 <i class="fa fa-trash"></i> Eliminar
               </a>
             </section>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WallService } from '../../services/wall.service';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-wall',
@@ -6,10 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wall.component.scss']
 })
 export class WallComponent implements OnInit {
+  public postsListArray: any;
+  public titlePost: string;
+  public targetPost: string;
 
-  constructor() { }
+  constructor(private wallService: WallService) {}
 
   ngOnInit() {
+    this.wallService.getPostsList().snapshotChanges().subscribe(item => {
+      this.postsListArray = [];
+      item.forEach(element => {
+        var x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.postsListArray.push(x);
+      });
+    });
   }
 
+  newPost() {
+    console.log(this.titlePost, this.targetPost);
+    this.wallService.addPost("Lorem ipsum","public");
+    this.titlePost = "";
+  }
+
+  editPost(key: string) {
+    this.wallService.updatePost(key, prompt('Actualización'));
+  }
+
+  removePost(key: string) {
+    if (confirm('¿Estas seguro/a de eliminar este post?')) {
+      this.wallService.deletePost(key);
+    }
+  }
 }
