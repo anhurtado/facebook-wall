@@ -5,21 +5,18 @@
   </button>
 
   <article class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mx-auto">
       <li class="nav-item" *ngIf="isLogin">
         <a class="nav-link" href="#" routerLink="/wall">Muro</a>
       </li>
-    </ul>
-
-    <ul class="navbar-nav mx-auto">
+      <li class="nav-item" *ngIf="isLogin">
+        <a class="nav-link" href="#" (click)="logoutUser()">Cerrar Sesión</a>
+      </li>
       <li class="nav-item" *ngIf="!isLogin">
         <a class="nav-link" href="#" routerLink="/login">Iniciar Sesión</a>
       </li>
       <li class="nav-item" *ngIf="!isLogin">
         <a class="nav-link" href="#" routerLink="/register">Registrarme</a>
-      </li>
-      <li class="nav-item" *ngIf="isLogin">
-        <a class="nav-link" href="#" (click)="logoutUser()">Cerrar Sesión</a>
       </li>
     </ul>
   </article>
