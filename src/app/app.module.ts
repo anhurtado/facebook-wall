@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { WallComponent } from './components/wall/wall.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     WallComponent,
     NotFoundComponent,
     NavbarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
