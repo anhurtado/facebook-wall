@@ -9,7 +9,7 @@ export class AuthService {
 
   login(email: string, pass: string) {
     return new Promise((resolve, reject) => {
-      this.authService.auth.createUserWithEmailAndPassword(email, pass)
+      this.authService.auth.signInWithEmailAndPassword(email, pass)
         .then(
           data => resolve(data),
           err => reject(err)

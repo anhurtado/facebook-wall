@@ -16,7 +16,7 @@ export class RegisterComponent {
     public router: Router
   ) { }
 
-  addNewUser() {
+  registerUser() {
     this.authService.register(this.email, this.password)
       .then(res => {
         console.log('Usuario creado con éxito');
