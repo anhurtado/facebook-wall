@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.email, this.password)
       .then(res => {
         console.log('Usuario creado con éxito');
-        console.log(res);
         this.messageService.show('Usuario creado con éxito', {cssClass:'alert-success', timeout:4000});
         this.router.navigate(['/wall']);
       }).catch(err => {

@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class WallService {
   public postsList: AngularFireList<any>;
 
-  constructor(
-    private firebasedb: AngularFireDatabase
-  ) {}
+  constructor(private firebasedb: AngularFireDatabase) {}
 
-  getPostsList() {
-    this.postsList = this.firebasedb.list('mP4HMI29jLSfAlPau7Pb9AgMt7U2/posts/');
+  getPostsList(idUser: string) {
+    this.postsList = this.firebasedb.list(idUser + '/posts/');
+    return this.postsList;
+  }
+
+  getPostsListByTarget(idUser: string, target: string) {
+    this.postsList = this.firebasedb.list(idUser + '/posts/', ref => ref.orderByChild('target').equalTo(target));
     return this.postsList;
   }
 

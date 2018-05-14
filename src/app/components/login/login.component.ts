@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password)
       .then(res => {
         console.log('Usuario autenticado con éxito');
-        console.log(res);
         this.messageService.show('Datos correctos', {cssClass:'alert-success', timeout:4000});
         this.router.navigate(['/wall']);
       }).catch(err => {

@@ -20,15 +20,18 @@
               <button type="button" class="btn btn-outline-info" (click)="newPost()">
                 <i class="fa fa-bullhorn"></i> Publicar
               </button>
-              <button type="button" class="btn btn-outline-info">
+              <!--<button type="button" class="btn btn-outline-info">
                 <i class="fa fa-image"></i> Subir Imagen
-              </button>
+              </button>-->
             </section>
             <section class="col-md-4">
-              <button type="button" class="btn btn-outline-info">
+              <button type="button" class="btn btn-outline-info" (click)="filterPosts('')">
+                <i class="fa fa-user"></i> Todos
+              </button>
+              <button type="button" class="btn btn-outline-info" (click)="filterPosts('friends')">
                 <i class="fa fa-user"></i> Amigos
               </button>
-              <button type="button" class="btn btn-outline-info">
+              <button type="button" class="btn btn-outline-info" (click)="filterPosts('public')">
                 <i class="fa fa-bullhorn"></i> Público
               </button>
             </section>
