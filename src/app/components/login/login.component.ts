@@ -13,10 +13,7 @@ export class LoginComponent implements OnInit {
   public email: string;
   public password: string;
   public loginForm: FormGroup;
-  public formErrors: any = {
-    'email': '',
-    'password': ''
-  };
+  public formErrors: any = { 'email': '', 'password': '' };
   public validationMessages: any = {
     'email': {
       'required': 'El correo electrónico es requerido.',
@@ -53,16 +50,9 @@ export class LoginComponent implements OnInit {
 
   buildForm(): void {
     this.loginForm = this.formBuilder.group({
-      'email': ['', [
-        Validators.required,
-        Validators.email
-      ]],
-      'password': ['', [
-        Validators.required,
-        Validators.minLength(6)
-      ]]
+      'email': ['', [ Validators.required, Validators.email ]],
+      'password': ['', [ Validators.required, Validators.minLength(6) ]]
     });
-
     this.loginForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
   }

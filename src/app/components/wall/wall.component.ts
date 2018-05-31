@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class WallComponent implements OnInit {
   public postsListArray: any;
+  public post: any = {};
+
   public titlePost: string;
   public targetPost: string;
   private idUser: string;
@@ -27,25 +29,31 @@ export class WallComponent implements OnInit {
   }
 
   getAllPost() {
-    this.wallService.getPostsList(this.idUser).snapshotChanges().subscribe(item => {
-      this.postsListArray = [];
-      item.forEach(element => {
-        var x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.postsListArray.push(x);
+    this.wallService.getPostsList(this.idUser).snapshotChanges().subscribe(
+      data => {
+        this.postsListArray = [];
+        data.forEach(i => {
+          let x = i.payload.toJSON();
+          x["$key"] = i.key;
+          this.postsListArray.push(x);
+        });
+        console.log(this.postsListArray)
+      }, error => {
+        console.log(error);
       });
-    });
   }
 
   newPost() {
-    this.wallService.addPost(this.titlePost, this.targetPost);
-    this.titlePost = "";
+    this.post.id = Date.now();
+    this.wallService.addPost(this.post);
+    this.post = {};
   }
 
   editPost(key: string) {
-    var newTitle = prompt('Actualización');
-    if (newTitle != '') {
-      this.wallService.updatePost(key, newTitle);
+    this.post.title = prompt('Actualización de Post');
+    if (this.post.title !== '') {
+      this.wallService.updatePost(key, this.post);
+      this.post = {};
     }
   }
 
@@ -56,16 +64,19 @@ export class WallComponent implements OnInit {
   }
 
   filterPosts(filterName: string) {
-    if (filterName == '') {
+    if (filterName === '') {
       this.getAllPost();
     } else {
-      this.wallService.getPostsListByTarget(this.idUser, filterName).snapshotChanges().subscribe(item => {
+      this.wallService.getPostsListByTarget(this.idUser, filterName).snapshotChanges().subscribe(
+        data => {
         this.postsListArray = [];
-        item.forEach(element => {
-          var x = element.payload.toJSON();
-          x["$key"] = element.key;
+        data.forEach(i => {
+          let x = i.payload.toJSON();
+          x["$key"] = i.key;
           this.postsListArray.push(x);
         });
+      }, error => {
+        console.log(error);
       });
     }
   }

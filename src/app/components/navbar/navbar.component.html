@@ -1,21 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#" routerLink="/">Facebook</a>
+  <a class="navbar-brand" href="#" routerLink="/">Facebook Wall</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <article class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item" *ngIf="isLogin">
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
+      <li class="nav-item">
+        <span class="text-white">Hola, {{ email }}</span>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" *ngIf="loggedIn">
         <a class="nav-link" href="#" routerLink="/wall">Muro</a>
       </li>
-      <li class="nav-item" *ngIf="isLogin">
+      <li class="nav-item" *ngIf="loggedIn">
         <a class="nav-link" href="#" (click)="logoutUser()">Cerrar Sesión</a>
       </li>
-      <li class="nav-item" *ngIf="!isLogin">
+      <li class="nav-item" *ngIf="!loggedIn">
         <a class="nav-link" href="#" routerLink="/login">Iniciar Sesión</a>
       </li>
-      <li class="nav-item" *ngIf="!isLogin">
+      <li class="nav-item" *ngIf="!loggedIn">
         <a class="nav-link" href="#" routerLink="/register">Registrarme</a>
       </li>
     </ul>

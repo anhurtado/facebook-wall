@@ -5,24 +5,21 @@
 
         <form>
           <section class="form-group">
-            <textarea class="form-control" rows="3" placeholder="¿Qué esta pasando?" [(ngModel)]="titlePost" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea class="form-control" rows="3" placeholder="¿Qué esta pasando?" [(ngModel)]="post.title" [ngModelOptions]="{standalone: true}"></textarea>
           </section>
           <section class="row mt-3 mb-3">
             <section class="col-md-4">
               <section class="form-group">
-                <select class="form-control" [(ngModel)]="targetPost" [ngModelOptions]="{standalone: true}">
+                <select class="form-control" [(ngModel)]="post.target" [ngModelOptions]="{standalone: true}">
                   <option value="friends">Amigos</option>
                   <option value="public">Público</option>
                 </select>
               </section>
             </section>
             <section class="col-md-4">
-              <button type="button" class="btn btn-outline-info" (click)="newPost()">
+              <button type="button" class="btn btn-outline-info btn-block" (click)="newPost()">
                 <i class="fa fa-bullhorn"></i> Publicar
               </button>
-              <!--<button type="button" class="btn btn-outline-info">
-                <i class="fa fa-image"></i> Subir Imagen
-              </button>-->
             </section>
             <section class="col-md-4">
               <button type="button" class="btn btn-outline-info" (click)="filterPosts('')">
@@ -40,17 +37,29 @@
 
         <section class="container">
           <section class="card mb-3" *ngFor="let item of postsListArray">
+            <div class="card-header"></div>
             <section class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
-              <label class="text-muted">{{ item.target }}</label>
-              &nbsp;&nbsp; | &nbsp;&nbsp;
+            </section>
+            <div class="card-footer text-muted">
+              <label *ngIf="item.target == 'friends'">
+                <i class="fa fa-users"></i> Amigos
+              </label>
+              <label *ngIf="item.target == 'public'">
+                <i class="fa fa-globe"></i> Público
+              </label>
+              &nbsp;&nbsp;
+              <label>
+                <i class="fa fa-calendar"></i> {{ item.id | date }}
+              </label>
+              &nbsp;&nbsp;
               <a class="card-link" (click)="editPost(item.$key)">
                 <i class="fa fa-pencil"></i> Editar
               </a>
               <a class="card-link" (click)="removePost(item.$key)">
                 <i class="fa fa-trash"></i> Eliminar
               </a>
-            </section>
+            </div>
           </section>
         </section>
 

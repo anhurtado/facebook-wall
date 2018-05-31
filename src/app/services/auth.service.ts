@@ -1,30 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  constructor(private authService: AngularFireAuth) { }
+  constructor(private authService: AngularFireAuth) {
+    this.getAuth();
+  }
 
   login(email: string, pass: string) {
-    return new Promise((resolve, reject) => {
-      this.authService.auth.signInWithEmailAndPassword(email, pass)
-        .then(
-          data => resolve(data),
-          err => reject(err)
-        );
-    });
+    return this.authService.auth.signInWithEmailAndPassword(email, pass);
   }
 
   register(email: string, pass: string) {
-    return new Promise((resolve, reject) => {
-      this.authService.auth.createUserWithEmailAndPassword(email, pass)
-        .then(
-          data => resolve(data),
-          err => reject(err)
-        );
-    });
+    return this.authService.auth.createUserWithEmailAndPassword(email, pass);
   }
 
   logout() {
@@ -32,6 +21,6 @@ export class AuthService {
   }
 
   getAuth() {
-    return this.authService.authState.map(auth => auth);
+    return this.authService.authState;
   }
 }

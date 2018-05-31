@@ -17,15 +17,12 @@ export class WallService {
     return this.postsList;
   }
 
-  addPost(titleN: string, targetN: string) {
-    this.postsList.push({
-      title: titleN,
-      target: targetN
-    });
+  addPost(post: any) {
+    this.postsList.push(post);
   }
 
-  updatePost($key: string, title: string) {
-    this.postsList.update($key, { title: title });
+  updatePost($key: string, post: any) {
+    this.postsList.update($key, post);
   }
 
   deletePost($key: string) {

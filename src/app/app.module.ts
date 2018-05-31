@@ -1,15 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-
+import { AppRoutingModule } from './app.routing';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '../environments/environment';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WallComponent } from './components/wall/wall.component';
